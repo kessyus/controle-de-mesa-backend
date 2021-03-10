@@ -7,7 +7,9 @@
     "dev": "nodemon",
     "start": "npm run create-db; npm run migrate-db; node ./index.js",
     "create-db": "./node_modules/.bin/sequelize db:create",
-    "migrate-db": "./node_modules/.bin/sequelize db:migrate"
+    "migrate-db": "./node_modules/.bin/sequelize db:migrate",
+    "drop-db": "./node_modules/.bin/sequelize db:drop",
+    "seed-db": "./node_modules/.bin/sequelize db:seed:all"
   },
   "repository": {
     "type": "git",

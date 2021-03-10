@@ -17,6 +17,21 @@ const getAllCursos = (req, res) => {
     })
 }
 
+const getCursoById = (req, res) => {
+  db.curso.findOne({
+    where: {
+      id: req.params.idcurso
+    }
+  }).then((result) => {
+    res.status(200).send({
+      id: result.id,
+      name: result.name
+    });
+  })
+
+}
+
 module.exports = {
-  getAllCursos
+  getAllCursos,
+  getCursoById
 }
