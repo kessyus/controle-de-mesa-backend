@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  const cursos = sequelize.define(
-    "cursos",
+  const mesa = sequelize.define(
+    "mesa",
     {
       id: {
         type: DataTypes.INTEGER,
@@ -9,19 +9,18 @@ module.exports = (sequelize, DataTypes) => {
         unique: true,
         allowNull: false
       },
-      coordinator: DataTypes.TEXT,
-      name: DataTypes.TEXT,
-      start_date: DataTypes.DATE,
-      status: DataTypes.BOOLEAN,
+      numero: DataTypes.INTEGER,
+      qtd_cadeiras: DataTypes.INTEGER,
+      ambiente: DataTypes.STRING
     },
     {
-      tableName: 'cursos',
+      tableName: 'mesa',
       underscored: true,
       paranoid: true,
       timestamps: false
     }
   );
 
-  return cursos;
+  return mesa;
 
 };

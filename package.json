@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon",
-    "start": "npm run create-db; npm run migrate-db; node ./index.js",
+    "start": "node",
     "create-db": "./node_modules/.bin/sequelize db:create",
     "migrate-db": "./node_modules/.bin/sequelize db:migrate",
     "drop-db": "./node_modules/.bin/sequelize db:drop",
-    "seed-db": "./node_modules/.bin/sequelize db:seed:all"
+    "seed-db": "./node_modules/.bin/sequelize db:seed:all",
+    "reset": "./node_modules/.bin/sequelize db:drop; ./node_modules/.bin/sequelize db:create; ./node_modules/.bin/sequelize db:migrate; ./node_modules/.bin/sequelize db:seed:all"
   },
   "repository": {
     "type": "git",
@@ -26,10 +27,10 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "mysql2": "^2.2.5",
     "sequelize": "^6.5.0"
   },
   "devDependencies": {
-    "mysql2": "^2.2.5",
     "nodemon": "^2.0.7",
     "sequelize-cli": "^6.2.0"
   }
