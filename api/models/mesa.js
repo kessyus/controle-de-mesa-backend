@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  const mesa = sequelize.define(
-    "mesa",
+  const mesas = sequelize.define(
+    "mesas",
     {
       id: {
         type: DataTypes.INTEGER,
@@ -14,13 +14,13 @@ module.exports = (sequelize, DataTypes) => {
       ambiente: DataTypes.STRING
     },
     {
-      tableName: 'mesa',
+      tableName: 'mesas',
       underscored: true,
       paranoid: true,
       timestamps: false
     }
   );
 
-  return mesa;
+  return mesas;
 
 };

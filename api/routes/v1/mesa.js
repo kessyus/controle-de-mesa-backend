@@ -7,9 +7,9 @@ module.exports = (router) => {
       mesaController.getAllMesas
     )
   
-  // router.route('/mesa/:idmesa')
-  //   .get(
-  //     // mesaController.getMesaById
-  //   )
+  router.route('/mesa/:idmesa')
+    .get(
+      mesaController.getMesaById
+    )
     
 }

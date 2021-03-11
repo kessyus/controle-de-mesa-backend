@@ -11,7 +11,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-   await queryInterface.bulkInsert('mesa',
+   await queryInterface.bulkInsert('mesas',
    [
      {
        numero: 1,
@@ -102,6 +102,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('tb_mesa', null, {});
+    await queryInterface.bulkDelete('mesas', null, {});
   }
 };
