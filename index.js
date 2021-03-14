@@ -19,4 +19,3 @@ app.listen(port, () => {
   console.log(`ᕦ(ツ)ᕤ Server starded at https://localhost:${port}/`);
 });
 
-// module.exports = app;
