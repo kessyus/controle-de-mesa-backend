@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const { name, version } = require('../../package.json');
-const cursoRoutesV1 = require('../routes/v1/curso');
 const mesaRoutesV1 = require('../routes/v1/mesa');
+const cardapioRoutesV1 = require('../routes/v1/cardapio');
 
 module.exports = app => {
   const router = Router();
@@ -11,8 +11,8 @@ module.exports = app => {
   })
 
   // rotas
-  cursoRoutesV1(router);  
   mesaRoutesV1(router);
+  cardapioRoutesV1(router);
 
   app.use('/v1', router);
 }

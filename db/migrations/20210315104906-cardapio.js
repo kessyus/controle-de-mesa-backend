@@ -8,22 +8,25 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.createTable("mesas", {
+    await queryInterface.createTable("cardapio", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      numero: {
+      produto: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.TEXT,
       },
-      qtd_cadeiras: {
+      preco: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.DECIMAL(10, 2),
       },
-      ambiente: {
+      descricao: {
+        type: Sequelize.TEXT,
+      },
+      categoria: {
         allowNull: false,
         type: Sequelize.TEXT,
       },
@@ -37,6 +40,6 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.dropTable("mesas");
+    await queryInterface.dropTable("cardapio");
   },
 };

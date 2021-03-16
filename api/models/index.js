@@ -1,7 +1,8 @@
 const config = require(__dirname + '/../../db/config.js');
 const Sequelize = require('sequelize');
-const modelCurso = require('./curso');
 const modelMesa = require('./mesa');
+const modelCardapio = require('./cardapio');
+const modelMesaCardapio = require('./mesaCardapio');
 
 const db = {};
 
@@ -14,8 +15,9 @@ if (config.use_env_variable) {
 }
 
 // chamando o model
-db.curso = modelCurso(sequelize, Sequelize.DataTypes);
 db.mesa = modelMesa(sequelize, Sequelize.DataTypes);
+db.cardapio = modelCardapio(sequelize, Sequelize.DataTypes);
+db.mesaCardapio = modelMesaCardapio(sequelize, Sequelize.DataTypes);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

@@ -6,7 +6,6 @@ const getAllMesas = (req, res) => {
     .then((dataFromDb) => {
 
       res.status(200).send(dataFromDb.map((item) => {
-
         return {
           id: item.id,
           numero: item.numero,
@@ -22,14 +21,14 @@ const getAllMesas = (req, res) => {
 const getMesaById = (req, res) => {
   db.mesa.findOne({
     where: {
-      id: req.params.idmesa
+      id: req.params.id
     }
-  }).then((result) => {
+  }).then((item) => {
     res.status(200).send({
-      id: result.id,
-      numero: result.numero,
-      qtd_cadeiras: result.qtd_cadeiras,
-      ambiente: result.ambiente
+        id: item.id,
+      numero: item.numero,
+      qtd_cadeiras: item.qtd_cadeiras,
+      ambiente: item.ambiente,
     });
   })
 
