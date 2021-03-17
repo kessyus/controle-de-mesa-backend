@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const cardapio = sequelize.define(
-    "cardapio",
+    "cardapios",
     {
       id: {
         type: DataTypes.INTEGER,
@@ -15,16 +15,15 @@ module.exports = (sequelize, DataTypes) => {
       categoria: DataTypes.TEXT
     },
     {
-      tableName: 'cardapio',
       underscored: true,
       paranoid: true,
       timestamps: false
     }
   );
 
-  cardapio.associate = model => {
-    cardapio.hasMany(model.mesaCardapio, {
-      foreignKey: 'idCardapio'
+  cardapio.associate = function (models) {
+    cardapio.hasMany(models.mesaCardapio, {
+      foreignKey: 'id_cardapio'
     });
   };
 

@@ -15,20 +15,19 @@ module.exports = (sequelize, DataTypes) => {
       status: DataTypes.BOOLEAN
     },
     {
-      tableName: 'mesaCardapio',
       underscored: true,
       paranoid: true,
       timestamps: false
     }
   );
 
-  mesaCardapio.associate = model => {
-    mesaCardapio.belongsTo(model.mesa, {
-      foreignKey: 'idMesa'
+  mesaCardapio.associate = function (models) {
+    mesaCardapio.belongsTo(models.cardapios, {
+      foreignKey: 'id'
     });
-    mesaCardapio.belongsTo(model.cardapio, {
-      foreignKey: 'idCardapio'
-    });
+    mesaCardapio.belongsTo(models.mesa, {
+      foreignKey: 'id'
+    })
   };
 
   return mesaCardapio;

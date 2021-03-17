@@ -1,37 +1,49 @@
-const db = require('../models/');
+const { mesa, cardapios, mesaCardapio } = require('../models');
 
-const getAllMesas = (req, res) => {
+const getAllMesas = async (req, res, next) => {
 
-  db.mesa.findAll({})
-    .then((dataFromDb) => {
+  const result = await mesa.findAll({});
 
-      res.status(200).send(dataFromDb.map((item) => {
-        return {
-          id: item.id,
-          numero: item.numero,
-          qtd_cadeiras: item.qtd_cadeiras,
-          ambiente: item.ambiente
-        }
+  res.status(200).send(result.map(item => {
 
-      }));
-      
-    })
+    const { id, numero, qtd_cadeiras, ambiente, ...resto } = item;
+
+    return {
+      id,
+      numero,
+      qtd_cadeiras,
+      ambiente
+    }
+
+  }) || []);
+
 }
 
-const getMesaById = (req, res) => {
-  db.mesa.findOne({
-    where: {
-      id: req.params.id
-    }
-  }).then((item) => {
-    res.status(200).send({
-        id: item.id,
-      numero: item.numero,
-      qtd_cadeiras: item.qtd_cadeiras,
-      ambiente: item.ambiente,
-    });
-  })
+const getMesaById = async (req, res, next) => {
 
+  try {
+  
+    const result = await mesa.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: {
+        model: mesaCardapio,
+        include: {
+          model: cardapios,
+          as: 'cardapio'
+        }
+      }
+    });
+
+    res.status(200).send(result);
+   
+  } catch (error) {
+    
+    console.log(error);
+    res.status(500).send({ mensagem: 'Mesa não encontrada.' });
+
+  }
 }
 
 module.exports = {

@@ -16,6 +16,6 @@ app.use(express.json());
 router(app);
 
 app.listen(port, () => {
-  console.log(`ᕦ(ツ)ᕤ Server starded at https://localhost:${port}/`);
+  console.log(`↖(^▽^)↗ Server starded at http://localhost:${port}/`);
 });
 

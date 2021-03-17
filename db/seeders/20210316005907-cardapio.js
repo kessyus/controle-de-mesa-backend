@@ -11,7 +11,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('cardapio', [
+    await queryInterface.bulkInsert('cardapios', [
       {
         produto: 'Camarões Empanados',
         preco: 68.50,
@@ -184,6 +184,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('cardapio', null, {});
+    await queryInterface.bulkDelete('cardapios', null, {});
   }
 };

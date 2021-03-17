@@ -11,51 +11,51 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('mesaCardapio', [
+    await queryInterface.bulkInsert('mesa_cardapios', [
       {
-        idMesa: 1,
-        idCardapio: 2,
-        datetime: '2021-03-15 18:32:17'
+        id_mesa: 1,
+        id_cardapio: 2,
+        date_time: '2021-03-15 18:32:17'
       },
       {
-        idMesa: 1,
-        idCardapio: 7,
-        datetime: '2021-03-15 19:20:10'
+        id_mesa: 1,
+        id_cardapio: 7,
+        date_time: '2021-03-15 19:20:10'
       },
       {
-        idMesa: 1,
-        idCardapio: 11,
-        datetime: '2021-03-15 19:20:58'
+        id_mesa: 1,
+        id_cardapio: 11,
+        date_time: '2021-03-15 19:20:58'
       },
       {
-        idMesa: 1,
-        idCardapio: 18,
-        datetime: '2021-03-15 18:42:00'
+        id_mesa: 1,
+        id_cardapio: 18,
+        date_time: '2021-03-15 18:42:00'
       },
       {
-        idMesa: 1,
-        idCardapio: 20,
-        datetime: '2021-03-15 18:43:17'
+        id_mesa: 1,
+        id_cardapio: 20,
+        date_time: '2021-03-15 18:43:17'
       },
       {
-        idMesa: 10,
-        idCardapio: 20,
-        datetime: '2021-03-15 19:00:00'
+        id_mesa: 10,
+        id_cardapio: 20,
+        date_time: '2021-03-15 19:00:00'
       },
       {
-        idMesa: 10,
-        idCardapio: 20,
-        datetime: '2021-03-15 19:01:05'
+        id_mesa: 10,
+        id_cardapio: 20,
+        date_time: '2021-03-15 19:01:05'
       },
       {
-        idMesa: 10,
-        idCardapio: 3,
-        datetime: '2021-03-15 19:10:30'
+        id_mesa: 10,
+        id_cardapio: 3,
+        date_time: '2021-03-15 19:10:30'
       },
       {
-        idMesa: 10,
-        idCardapio: 16,
-        datetime: '2021-03-15 20:22:22'
+        id_mesa: 10,
+        id_cardapio: 16,
+        date_time: '2021-03-15 20:22:22'
       }
     ]);
   },
@@ -67,6 +67,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('mesaCardapio', null, {});
+    await queryInterface.bulkDelete('mesa_cardapios', null, {});
   }
 };
