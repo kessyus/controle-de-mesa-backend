@@ -11,5 +11,14 @@ module.exports = (router) => {
     .get(
       mesaController.getMesaById
     )
-    
+
+  router.route('/mesa/insert')
+    .post(
+      mesaController.postCadastroPedido
+    )
+  
+  router.route('/mesa/delete')
+    .delete(
+      mesaController.deletePedido
+    )
 }

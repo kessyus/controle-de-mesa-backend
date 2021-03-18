@@ -23,10 +23,10 @@ module.exports = (sequelize, DataTypes) => {
 
   mesaCardapio.associate = function (models) {
     mesaCardapio.belongsTo(models.cardapios, {
-      foreignKey: 'id'
+      foreignKey: 'id_cardapio'
     });
     mesaCardapio.belongsTo(models.mesa, {
-      foreignKey: 'id'
+      foreignKey: 'id_mesa'
     })
   };
 
