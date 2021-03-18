@@ -35,9 +35,6 @@ const getMesaById = async (req, res, next) => {
       }
     });
 
-    //TODO: criar model para enviar apenas o necessário pro front end
-
-
     res.status(200).send(result);
    
   } catch (error) {
