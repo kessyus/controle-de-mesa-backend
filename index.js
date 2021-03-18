@@ -4,7 +4,7 @@ const cors = require("cors");
 const router = require("./api/routes");
 
 // variable
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 8000;
 
 // starting app
 const app = express();
@@ -18,4 +18,3 @@ router(app);
 app.listen(port, () => {
   console.log(`↖(^▽^)↗ Server starded at http://localhost:${port}/`);
 });
-
