@@ -40,7 +40,7 @@ const getMesaById = async (req, res, next) => {
   } catch (error) {
     
     console.log(error);
-    res.status(500).send({ message: `Tabela ${req.params.id} não foi encontrada.` });
+    res.status(500).send({ message: `Mesa ${req.params.id} não foi encontrada.` });
 
   }
 }

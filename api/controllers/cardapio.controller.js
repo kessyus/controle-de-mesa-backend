@@ -1,38 +1,43 @@
-const db = require('../models/');
+const { cardapios } = require('../models');
 
-const getAllCardapio = (req, res) => {
+const getAllCardapio = async (req, res, next) => {
 
-  db.cardapio.findAll({})
-    .then((dataFromDb) => {
+  const result = await cardapios.findAll({});
 
-      res.status(200).send(dataFromDb.map((item) => {
-        return {
-          id: item.id,
-          produto: item.produto,
-          preco: item.produto,
-          descricao: item.descricao,
-          categoria: item.categoria
-        }
+  res.status(200).send(result.map(item => {
 
-      }));
-      
-    })
+    const { id, produto, preco, descricao, categoria } = item;
+
+    return {
+      id,
+      produto,
+      preco,
+      descricao,
+      categoria
+    }
+
+  }) || []);
+
 }
 
-const getCardapioById = (req, res) => {
-  db.cardapio.findOne({
-    where: {
-      id: req.params.id
-    }
-  }).then((item) => {
-    res.status(200).send({
-      id: item.id,
-      produto: item.produto,
-      preco: item.produto,
-      descricao: item.descricao,
-      categoria: item.categoria
+const getCardapioById = async (req, res, next) => {
+
+  try {
+    
+    const result = await cardapios.findOne({
+      where: {
+        id: req.params.id
+      }
     });
-  })
+
+    res.status(200).send(result);
+
+  } catch (error) {
+
+    console.log(error);
+    res.status(500).send({ message: `Item ${req.params.id} não foi encontrado.`});
+
+  }
 
 }
 
