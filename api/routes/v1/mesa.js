@@ -17,7 +17,7 @@ module.exports = (router) => {
       mesaController.postCadastroPedido
     )
   
-  router.route('/mesa/delete')
+  router.route('/mesa/delete/:id')
     .delete(
       mesaController.deletePedido
     )

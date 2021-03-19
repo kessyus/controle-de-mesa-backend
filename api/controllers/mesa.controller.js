@@ -76,7 +76,7 @@ const deletePedido = async (req, res, next) => {
    
     await mesaCardapio.destroy({
       where: {
-        id: req.body.idpedido
+        id: req.params.id
       }
     });
 
