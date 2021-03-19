@@ -12,7 +12,7 @@ module.exports = (router) => {
       mesaController.getMesaById
     )
 
-  router.route('/mesa/insert')
+  router.route('/mesa/:id/insert')
     .post(
       mesaController.postCadastroPedido
     )

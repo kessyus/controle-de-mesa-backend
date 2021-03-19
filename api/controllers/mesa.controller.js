@@ -53,7 +53,7 @@ const postCadastroPedido = async (req, res, next) => {
     const model = {
       status: true,
       id_cardapio: req.body.idcardapio,
-      id_mesa: req.body.idmesa,
+      id_mesa: req.params.id,
       dateTime: new Date().toISOString().slice(0, 19).replace('T', ' ')
     }
 

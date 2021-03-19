@@ -23,6 +23,6 @@ $ yarn start        # inicia o servidor
   - 'v?/cardapio': Lista todos os itens do cardápio do restaurante.
   - 'v?/cardapio/:id': Lista detalhes do item especificado pelo id.
 - POST
-  - 'v?/mesa/insert': Insere um novo pedido para a mesa. Necessário informar por POST o 'id_cardapio' e o 'idmesa'.
+  - 'v?/mesa/:id/insert': Insere um novo pedido para a mesa. Necessário informar por POST o 'id_cardapio'.
 - DELETE
   - 'v?/mesa/delete/:id': Exclui um pedido de uma mesa.
