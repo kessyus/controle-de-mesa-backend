@@ -3,12 +3,15 @@ const usuarioService = require('../services/usuario.service')
 const autenticar = async (req, res, next) => {
     try{
         
-        console.log(req.body);
+        // console.log(req.body);
         
         const { usuario, senha } = req.body
+        
+        const result = await usuarioService.usuarioExiste( usuario, senha);
+       
 
-        if(!usuarioService.usuarioExiste(usuario, senha))
-        res.status(401).send({
+        if(!result)
+        return res.status(401).send({
             mensagem: 'usuário ou senha invalidos'
         })
        
@@ -16,10 +19,13 @@ const autenticar = async (req, res, next) => {
             mensagem: 'usuario autenticado com sucesso',
             token: 'dsjshgdjhag'  
         })
-    } catch (error) {
-        res.status(500).send({
-            mensagem: 'Error'
-        })
+    } catch (error) 
+    
+    {
+        console.log(error);
+        // res.status(500).send({
+        //     mensagem: 'error'
+        // })
     }
     }
 

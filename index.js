@@ -18,3 +18,7 @@ router(app);
 app.listen(port, () => {
   console.log(`↖(^▽^)↗ Server starded at http://localhost:${port}/`);
 });
+
+// const md5 = require('md5')
+
+// console.log(md5('123456' + 'palavre_chave_crypto_key'));

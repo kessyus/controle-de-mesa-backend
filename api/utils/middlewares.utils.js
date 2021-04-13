@@ -21,7 +21,7 @@ exports.validateDTO = (type, params) => {
         allowUnknown: false,
         });
     
-        req[type]=value
+        req[type] = value;
 
         return error ? res.status(422).send({
             detalhes: [...criarDetalhes(error)],

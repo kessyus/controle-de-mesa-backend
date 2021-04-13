@@ -1,32 +1,42 @@
-const md5 = require('md5'); //instalar md5
+const md5 = require('md5');
 const hashSecret = process.env.CRYPTO_KEY
+const { usuarios } = require('../models')
 
-const data = [
-    {
-        nome: 'Fulano',
-        senha: '123456'
-    },
-    {
-        nome: 'Ciclano',
-        senha: '567891'
-    },
-    {
-        nome: 'Beltrano',
-        senha: '135791'
-    },
-];
+// const data = [
+//     {
+//         nome: 'Fulano',
+//         senha: md5('123456' + hashSecret)
+//     },
+//     {
+//         nome: 'Ciclano',
+//         senha: md5('123456' + hashSecret)
+//     },
+//     {
+//         nome: 'Beltrano',
+//         senha: md5('123456' + hashSecret)
+//     },
+// ];
 
-const usuarioExiste = (usuario, senha) => {
+const usuarioExiste = async (usuario, senha) => {
+    const usuarioDB = await usuarios.findOne({
+        where: {
+            nome: usuario,
+            senha: md5(senha + hashSecret)
+        },
+    });
 
     //TODO: remover mock
-   const usuario = data.find(item => {
+//    const usuarioDB = data.find(item => {
 
-       return ((item.nome.toLocaleUpperCase() === usuario.toLocaleUpperCase())
-           && (item.senha === md5(senha + hashSecret)))
+//        return ((item.nome.toLocaleUpperCase() === usuario.toLocaleUpperCase())
+//            && (item.senha === md5(senha + hashSecret)))
 
-   });
+//    });
 
-    return usuario ? true : false;
+
+    console.log(usuarioDB);
+
+    return usuarioDB ? true : false;
 
 }
 

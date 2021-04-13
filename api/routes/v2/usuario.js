@@ -1,6 +1,6 @@
 const usuarioController = require('../../controllers/usuario.controller')
-const Joi = require('joi');
 const { validateDTO } = require('../../utils/middlewares.utils')
+const Joi = require('joi');
 
 module.exports = (router) =>{
 
@@ -8,11 +8,14 @@ module.exports = (router) =>{
         .route('/auth')
         .post(
             validateDTO('body', {
-                senha: Joi.string().min(6).required().message({
-                    'any.required': `"senha" é um campo obrigatório`
+                senha: Joi.string().required().messages({
+                    'any.required': `"senha" é um campo obrigatório`,
+                    'string.empty': `"senha" não deve ser vazio`,
+                    // 'string.min': `"senha" não deve ter menos que {#limit} caracteres`,
                 }),
-                usuario: Joi.string().required().message({
-                    'any.required': `"usuário" é um campo obrigatório`
+                usuario: Joi.string().required().messages({
+                    'any.required': `"usuário" é um campo obrigatório`,
+                    'string.empty': `"usuário" não deve ser vazio`,
                 }),
             }),
             usuarioController.autenticar
