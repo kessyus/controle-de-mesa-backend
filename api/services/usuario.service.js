@@ -41,7 +41,7 @@ const criarCredencial = async (nomeUsuario) => {
         
         const credenciais = {
             token: jwt.sign({ nome: usuario.nome }, process.env.JWT_KEY, {
-                expiresIn: '7200000ms'
+                expiresIn: `${process.env.JWT_VALID_TIME}ms`
             }),
             usuario: {
                 nome,

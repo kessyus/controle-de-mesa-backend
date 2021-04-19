@@ -1,8 +1,12 @@
 const { Router } = require('express');
 const { name, version } = require('../../package.json');
+//rotas v1
 const mesaRoutesV1 = require('../routes/v1/mesa');
 const cardapioRoutesV1 = require('../routes/v1/cardapio');
+//rotas v2
 const usuarioRoutesV2 = require('../routes/v2/usuario')
+const mesaRoutesV2 = require('../routes/v2/mesa');
+const cardapioRoutesV2 = require('./v2/cardapio.js');
 
 module.exports = (app) => {
  
@@ -18,6 +22,8 @@ module.exports = (app) => {
   app.use('/v1', routerV1);
 
  const routerV2 = Router();
+ mesaRoutesV2(routerV2);
+ cardapioRoutesV2(routerV2);
  usuarioRoutesV2(routerV2);
   app.use('/v2', routerV2);
 }

@@ -2,7 +2,7 @@ const usuarioController = require('../../controllers/usuario.controller')
 const { validateDTO } = require('../../utils/middlewares.utils')
 const Joi = require('joi');
 
-module.exports = (router) =>{
+module.exports = (router) => {
 
     router
         .route('/auth')
@@ -11,7 +11,6 @@ module.exports = (router) =>{
                 senha: Joi.string().required().messages({
                     'any.required': `"senha" é um campo obrigatório`,
                     'string.empty': `"senha" não deve ser vazio`,
-                    // 'string.min': `"senha" não deve ter menos que {#limit} caracteres`,
                 }),
                 usuario: Joi.string().required().messages({
                     'any.required': `"usuário" é um campo obrigatório`,
@@ -21,4 +20,24 @@ module.exports = (router) =>{
             usuarioController.autenticar
             );
 
+    router
+        .route('/funcionario')
+        .post(
+            validateDTO('body', {
+                nome: Joi.string().required().min(5).max(15).messages({
+                    'any.required': `"nome" é um campo obrigatório`,
+                    'string.empty': `"nome" não deve ser vazio`,
+                    'string.min': `"nome" não deve ter menos que {#limit} caracteres`,
+                    'string.max': `"nome" não deve ter mais que {#limit} caracteres`
+                }),
+                senha: Joi.string().min(5).required().messages({
+                    'any.required': `"senha" é um campo obrigatório`,
+                    'string.min': `"senha" não deve ter menos que {#limit} caracteres`,
+                    'string.empty': `"senha" não deve ser vazio`,
+                }),
+
+            }),
+            usuarioController.criarFuncionario
+
+    );
 }

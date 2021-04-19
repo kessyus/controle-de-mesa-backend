@@ -24,8 +24,15 @@ const autenticar = async (req, res, next) => {
             mensagem: 'error'
         })
     }
-    }
+}
+
+const criarFuncionario = async (req, res, next) => {
+    res.status(200).send({
+        mensagem: "cadastro realizado"
+    })
+}
 
 module.exports = {
-    autenticar
+    autenticar,
+    criarFuncionario
 }
