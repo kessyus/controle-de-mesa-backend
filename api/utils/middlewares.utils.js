@@ -42,9 +42,10 @@ exports.validateDTO = (type, params) => {
 
 exports.autorizar = () => {
 
-    return (req, res, next) => {
+    return async (req, res, next) => {
 
-        const { token } = req.header;
+        const { token } = req.headers;
+      
 
        try {
            
@@ -54,7 +55,9 @@ exports.autorizar = () => {
                })
            }
 
-        const verificarToken = jwt.verify(token, process.env.JWT_KEY);    
+            // const verificarToken = jwt.verify(token, process.env.JWT_KEY);
+        
+            next();
 
        } catch (error) {
 

@@ -6,7 +6,7 @@ const cardapioRoutesV1 = require('../routes/v1/cardapio');
 //rotas v2
 const usuarioRoutesV2 = require('../routes/v2/usuario')
 const mesaRoutesV2 = require('../routes/v2/mesa');
-const cardapioRoutesV2 = require('./v2/cardapio.js');
+const cardapioRoutesV2 = require('../routes/v2/cardapio');
 
 module.exports = (app) => {
  

@@ -1,5 +1,6 @@
 const mesaController = require('../../controllers/mesa.controller');
-const { autorizar } = require('../../utils/middlewares.utils')
+const { autorizar, validateDTO } = require('../../utils/middlewares.utils');
+const Joi = require ('joi');
 
 module.exports = (router) => {
 
@@ -7,6 +8,15 @@ module.exports = (router) => {
     .get(
       autorizar(),
       mesaController.getAllMesas
+    )
+    .post(
+      autorizar(),
+      validateDTO('body', {
+        numero: Joi.number().integer().required(),
+        qtd_cadeiras: Joi.number().integer().required(),
+        ambiente: Joi.string().required()
+      }),
+      mesaController.criarMesa
     )
   
   router.route('/mesa/:id')

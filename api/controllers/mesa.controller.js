@@ -89,9 +89,16 @@ const deletePedido = async (req, res, next) => {
   }
 }
 
+const criarMesa = async (req, res, next) => {
+  return res.status(200).send({
+    mensagem: 'Mesa criada com sucesso'
+  })
+}
+
 module.exports = {
   getAllMesas,
   getMesaById,
   postCadastroPedido,
-  deletePedido
+  deletePedido,
+  criarMesa
 }

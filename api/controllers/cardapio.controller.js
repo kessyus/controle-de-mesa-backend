@@ -41,7 +41,14 @@ const getCardapioById = async (req, res, next) => {
 
 }
 
+const criarCardapio = async (req, res, next) => {
+  res.status(200).send({
+    mensagem: 'Inserido com sucesso'
+  })
+}
+
 module.exports = {
   getAllCardapio,
-  getCardapioById
+  getCardapioById,
+  criarCardapio
 }
