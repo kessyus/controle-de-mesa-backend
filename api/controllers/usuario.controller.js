@@ -22,14 +22,34 @@ const autenticar = async (req, res, next) => {
     {
         res.status(500).send({
             mensagem: 'error'
-        })
+        });
     }
 }
 
 const criarFuncionario = async (req, res, next) => {
-    res.status(200).send({
-        mensagem: "cadastro realizado"
-    })
+    
+    try {
+        const { body } = req;
+        const validarFuncionario = await usuarioService.funcionarioJaExiste(body.nome);
+
+        if (validarFuncionario) {
+            return res.status(400).send({
+                mensagem: "Funcionário já cadastrado"
+            });
+        }
+        await usuarioService.criarFuncionario(body)
+        
+        res.status(200).send({
+            mensagem: "cadastro realizado"
+        })
+        
+    
+    } catch (error) {
+        res.status(500).send({
+            mensagem: 'error'
+        });
+    } 
+    
 }
 
 module.exports = {
