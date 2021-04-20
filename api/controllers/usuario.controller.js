@@ -43,7 +43,6 @@ const criarFuncionario = async (req, res, next) => {
             mensagem: "cadastro realizado"
         })
         
-    
     } catch (error) {
         res.status(500).send({
             mensagem: 'error'
