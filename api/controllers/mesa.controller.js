@@ -1,4 +1,5 @@
 const { mesa, cardapios, mesaCardapio } = require('../models');
+const mesaService = require('../services/mesa.service')
 
 const getAllMesas = async (req, res, next) => {
 
@@ -90,9 +91,28 @@ const deletePedido = async (req, res, next) => {
 }
 
 const criarMesa = async (req, res, next) => {
-  return res.status(200).send({
-    mensagem: 'Mesa criada com sucesso'
-  })
+ 
+  try {
+    const { body } = req;
+    const validarMesa = await mesaService.mesaExiste(body.numero);
+     
+    
+    if (validarMesa) {
+      return res.status(400).send({
+        mensagem: "Mesa já cadastrada"
+      });
+    }
+    await mesaService.criarMesa(body)
+    
+    res.status(200).send({
+      mensagem: "mesa criada"
+    })
+    
+  } catch (error) {
+    res.status(500).send({
+      mensagem: 'error'
+    });
+    }
 }
 
 module.exports = {

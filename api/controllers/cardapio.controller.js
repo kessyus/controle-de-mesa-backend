@@ -1,4 +1,5 @@
 const { cardapios } = require('../models');
+const cardapioService = require('../services/cardapio.service')
 
 const getAllCardapio = async (req, res, next) => {
 
@@ -42,9 +43,27 @@ const getCardapioById = async (req, res, next) => {
 }
 
 const criarCardapio = async (req, res, next) => {
-  res.status(200).send({
-    mensagem: 'Inserido com sucesso'
-  })
+  try {
+    const { body } = req;
+    const validarItem = await cardapioService.itemExiste(body.produto);
+     
+    if (validarItem) {
+      return res.status(400).send({
+        mensagem: "Item já cadastrada"
+      });
+    }
+    await cardapioService.criarItem(body)
+    
+    res.status(200).send({
+      mensagem: "item criada"
+    })
+    
+  } catch (error) {
+    res.status(500).send({
+      mensagem: 'error'
+    });
+    console.log(error);
+    }
 }
 
 module.exports = {

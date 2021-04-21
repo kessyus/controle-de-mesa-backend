@@ -42,8 +42,6 @@ const criarCredencial = async (nomeUsuario) => {
         
         const { nome, tipo } = usuario
         
-        console.log('usuario$', usuario);
-        
         const credenciais = {
             token: jwt.sign({ nome: usuario.nome }, process.env.JWT_KEY, {
                 expiresIn: `${process.env.JWT_VALID_TIME}ms`
@@ -63,21 +61,21 @@ const criarCredencial = async (nomeUsuario) => {
     }
 }
 
-    const funcionarioJaExiste = async (nome) => {
+const funcionarioJaExiste = async (nome) => {
         const result = await buscarPorNome(nome);
         return result ? true : false;
     }
 
-    const criarFuncionario = (model) => {
+ const criarFuncionario = (model) => {
 
-        const modelParaCadastro = {
+    const modelParaCadastro = {
 
-            nome: model.nome,
-            tipo: '2',
-            senha: criarHash(model.senha),
+        nome: model.nome,
+        tipo: model.tipo,
+        senha: criarHash(model.senha),
         };
 
-        return usuarios.create(modelParaCadastro)
+    return usuarios.create(modelParaCadastro)
 
     }
 
@@ -85,5 +83,6 @@ module.exports = {
     usuarioExiste,
     criarCredencial,
     funcionarioJaExiste,
-    criarFuncionario
+    criarFuncionario,
+    buscarPorNome
 }

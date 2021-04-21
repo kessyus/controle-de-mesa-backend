@@ -1,5 +1,35 @@
 const Joi = require('joi')
 const jwt = require('jsonwebtoken')
+const usuarioService = require('../services/usuario.service')
+
+const perfis = [
+    {
+        id: '1',
+        funcionalidades: [
+            'CRIAR_MESA',
+            'ALTERAR_MESA',
+            'DELETAR_MESA',
+            'CRIAR_ITEM_CARDAPIO',
+            'ALTERAR_ITEM_CARDAPIO',
+            'DELETAR_ITEM_CARDAPIO',
+            'CRIAR_FUNCIONARIO',
+            'ALTERAR_FUNCIONARIO',
+            'DELETAR_FUNCIONARIO'
+        ]
+    },
+    {
+        id: '2',
+        funcionalidades: [
+            'FAZER_PEDIDO',
+            'DELETAR_PEDIDO'
+        ]
+    },
+];
+
+const buscarPerfilPorId = (perfilId) => {
+    const result = perfis.find(item => Number(item.id) === Number(perfilId));
+    return result;
+}
 
 const criarDetalhes = (error) => {
     return error.details.reduce((acc, item) => {
@@ -40,7 +70,7 @@ exports.validateDTO = (type, params) => {
 
 }
 
-exports.autorizar = () => {
+exports.autorizar = (rota = '*') => {
 
     return async (req, res, next) => {
 
@@ -55,7 +85,19 @@ exports.autorizar = () => {
                })
            }
 
-            // const verificarToken = jwt.verify(token, process.env.JWT_KEY);
+            const verificarToken = jwt.verify(token, process.env.JWT_KEY);
+
+            const usuario = await usuarioService.buscarPorNome(verificarToken.nome);
+            req.usuario = usuario;
+
+            if (rota!== '*') {
+                const perfil = buscarPerfilPorId(usuario.tipo);
+                if (!perfil.funcionalidades.includes(rota)){
+                    return res.status(403).send({
+                        mensagem: 'Usuário não autorizado'
+                    })
+                }
+            }
         
             next();
 

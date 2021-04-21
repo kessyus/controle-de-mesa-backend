@@ -9,11 +9,11 @@ module.exports = (router) => {
       cardapioController.getAllCardapio
     )
     .post(
-      autorizar(),
+      autorizar('CRIAR_ITEM_CARDAPIO'),
       validateDTO('body', {
         produto: Joi.string().required(),
         preco: Joi.number().required(),
-        descricao: Joi.string().required(),
+        descricao: Joi.string(),
         categoria: Joi.string().required(),
       }),
       cardapioController.criarCardapio

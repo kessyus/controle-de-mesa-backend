@@ -6,11 +6,11 @@ module.exports = (router) => {
 
   router.route('/mesa')
     .get(
-      autorizar(),
+      autorizar('FAZER_PEDIDO', 'ALTERAR_MESA'),
       mesaController.getAllMesas
     )
     .post(
-      autorizar(),
+      autorizar('CRIAR_MESA'),
       validateDTO('body', {
         numero: Joi.number().integer().required(),
         qtd_cadeiras: Joi.number().integer().required(),
@@ -21,19 +21,19 @@ module.exports = (router) => {
   
   router.route('/mesa/:id')
     .get(
-      autorizar(),
+      autorizar('FAZER_PEDIDO', 'ALTERAR_MESA'),
       mesaController.getMesaById
     )
 
   router.route('/mesa/:id/insert')
     .post(
-      autorizar(),
+      autorizar('FAZER_PEDIDO'),
       mesaController.postCadastroPedido
     )
   
   router.route('/mesa/delete/:id')
     .delete(
-      autorizar(),
+      autorizar('DELETAR_PEDIDO'),
       mesaController.deletePedido
     )
 }
