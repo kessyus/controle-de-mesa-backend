@@ -9,19 +9,21 @@ const perfis = [
             'CRIAR_MESA',
             'ALTERAR_MESA',
             'DELETAR_MESA',
+            'LISTAR_MESA',
             'CRIAR_ITEM_CARDAPIO',
             'ALTERAR_ITEM_CARDAPIO',
             'DELETAR_ITEM_CARDAPIO',
             'CRIAR_FUNCIONARIO',
             'ALTERAR_FUNCIONARIO',
-            'DELETAR_FUNCIONARIO'
+            'DELETAR_FUNCIONARIO',
         ]
     },
     {
         id: '2',
         funcionalidades: [
             'FAZER_PEDIDO',
-            'DELETAR_PEDIDO'
+            'DELETAR_PEDIDO',
+            'LISTAR_MESA'
         ]
     },
 ];

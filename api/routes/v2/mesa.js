@@ -6,7 +6,7 @@ module.exports = (router) => {
 
   router.route('/mesa')
     .get(
-      autorizar('FAZER_PEDIDO', 'ALTERAR_MESA'),
+      autorizar('LISTAR_MESA'),
       mesaController.getAllMesas
     )
     .post(
@@ -21,7 +21,7 @@ module.exports = (router) => {
   
   router.route('/mesa/:id')
     .get(
-      autorizar('FAZER_PEDIDO', 'ALTERAR_MESA'),
+      autorizar('LISTAR_MESA'),
       mesaController.getMesaById
     )
 
