@@ -26,7 +26,21 @@ const criarItem = (model) => {
 
     }
 
+const alterarItem = (id, body) => {
+    const model = {
+        produto: body.produto,
+        prpreco: body.preco,
+        descricao: body.descricao,
+        categoria: body.categoria
+    }
+    return cardapios.update(
+        { ...model },
+        { where: {id: id} }
+    )
+}
+
 module.exports = {
     itemExiste,
-    criarItem
+    criarItem,
+    alterarItem
 }

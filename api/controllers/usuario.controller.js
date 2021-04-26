@@ -51,7 +51,25 @@ const criarFuncionario = async (req, res, next) => {
     
 }
 
+const alterarFuncionario = async (req, res, next) => {
+    const { body, params } = req;
+    const validarNome = await usuarioService.funcionarioJaExiste(body.nome, params.id);
+
+    if (validarNome) {
+        return res.staus(400).senf({
+            mensagem: `"Nome" já cadastrado`
+        });
+    }
+
+    await usuarioService.alterarFuncionario(params.id, body);
+
+    return res.status(200).send({
+        mensagem: 'Alteração realizada'
+    })
+}
+
 module.exports = {
     autenticar,
-    criarFuncionario
+    criarFuncionario,
+    alterarFuncionario
 }

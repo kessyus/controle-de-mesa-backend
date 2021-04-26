@@ -66,8 +66,29 @@ const criarCardapio = async (req, res, next) => {
     }
 }
 
+const alterarItem = async (req, res, next) => {
+
+  try {
+    const { id } = req.params;
+    
+    await cardapioService.alterarItem(id, req.body);
+
+    return res.status(200).send({
+      mensagem: 'Item alterado.'
+    });
+
+  } catch (error) {
+    console.log(error);
+    return req.status(500).send({
+      mensagem: 'Erro!!!'
+    })
+    
+  }
+}
+
 module.exports = {
   getAllCardapio,
   getCardapioById,
-  criarCardapio
+  criarCardapio,
+  alterarItem
 }

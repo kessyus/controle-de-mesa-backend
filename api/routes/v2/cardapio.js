@@ -23,5 +23,21 @@ module.exports = (router) => {
     .get(
       cardapioController.getCardapioById
     )
-    
+    .put(
+      autorizar(),
+      validateDTO('params', {
+        id: Joi.number().integer().required().messages({
+          'any.required': `"id" é um campo obrigatório`,
+          'number.base': `"id" deve ser um número`,
+          'number.integer': `"id" deve ser um número válido`
+        })
+      }),
+      validateDTO('body', {
+        produto: Joi.string().required(),
+        preco: Joi.number().required(),
+        descricao: Joi.string(),
+        categoria: Joi.string().required(),
+      }),
+      cardapioController.alterarItem
+    )
 }

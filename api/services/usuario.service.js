@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const hashSecret = process.env.CRYPTO_KEY
 const { usuarios } = require('../models')
 
-buscarPorNome = async (nome) => {
+const buscarPorNome = async (nome) => {
     return usuarioDB = usuarios.findOne({
         where: {
             nome: nome
@@ -11,7 +11,7 @@ buscarPorNome = async (nome) => {
     });
 }
 
-criarHash = (senha) => {
+const criarHash = (senha) => {
 
     return md5(senha + hashSecret);
 }
@@ -79,10 +79,23 @@ const funcionarioJaExiste = async (nome) => {
 
     }
 
+const alterarFuncionario = (id, model) => {
+    return usuarios.update(
+        {
+            nome: model.nome,
+            tipo: model.tipo,
+        },
+        {
+            where: { id: id}
+        }
+    )
+}
+
 module.exports = {
     usuarioExiste,
     criarCredencial,
     funcionarioJaExiste,
     criarFuncionario,
-    buscarPorNome
+    buscarPorNome,
+    alterarFuncionario
 }
