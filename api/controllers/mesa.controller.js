@@ -117,10 +117,31 @@ const criarMesa = async (req, res, next) => {
     }
 }
 
+
+const alterarMesa = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    
+    await mesaService.alterarMesa(id, req.body);
+
+    return res.status(200).send({
+      mensagem: 'Mesa alterada.'
+    });
+
+  } catch (error) {
+    console.log(error);
+    return req.status(500).send({
+      mensagem: 'Erro!!!'
+    })
+    
+  }
+}
+
 module.exports = {
   getAllMesas,
   getMesaById,
   postCadastroPedido,
   deletePedido,
-  criarMesa
+  criarMesa,
+  alterarMesa
 }

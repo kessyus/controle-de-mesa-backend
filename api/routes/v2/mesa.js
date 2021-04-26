@@ -4,7 +4,8 @@ const Joi = require ('joi');
 
 module.exports = (router) => {
 
-  router.route('/mesa')
+  router
+    .route('/mesa')
     .get(
       autorizar('LISTAR_MESA'),
       mesaController.getAllMesas
@@ -19,21 +20,28 @@ module.exports = (router) => {
       mesaController.criarMesa
     )
   
-  router.route('/mesa/:id')
+  router
+    .route('/mesa/:id')
     .get(
       autorizar('LISTAR_MESA'),
       mesaController.getMesaById
-    )
+      )
+    .put(
+      autorizar('ALTERAR_MESA'),
+      mesaController.alterarMesa
+      )
 
-  router.route('/mesa/:id/insert')
+  router
+    .route('/mesa/:id/insert')
     .post(
       autorizar('FAZER_PEDIDO'),
       mesaController.postCadastroPedido
-    )
-  
-  router.route('/mesa/delete/:id')
+      )
+    
+  router
+    .route('/mesa/delete/:id')
     .delete(
       autorizar('DELETAR_PEDIDO'),
       mesaController.deletePedido
-    )
+      )
 }

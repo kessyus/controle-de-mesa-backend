@@ -91,11 +91,30 @@ const alterarFuncionario = (id, model) => {
     )
 }
 
+const listarFuncionarios = async () => {
+    const funcionariosFromDB = await usuarios.findAll({
+        where: {
+            tipo: '2'
+        },
+    })
+
+    return funcionariosFromDB.map(item => {
+        const { id, nome, tipo } = item
+
+        return{
+            id,
+            nome,
+            tipo
+        }
+    })
+}
+
 module.exports = {
     usuarioExiste,
     criarCredencial,
     funcionarioJaExiste,
     criarFuncionario,
     buscarPorNome,
-    alterarFuncionario
+    alterarFuncionario,
+    listarFuncionarios
 }

@@ -1,3 +1,4 @@
+const { JSON } = require('sequelize');
 const usuarioService = require('../services/usuario.service')
 
 const autenticar = async (req, res, next) => {
@@ -51,6 +52,13 @@ const criarFuncionario = async (req, res, next) => {
     
 }
 
+const listarFuncionarios = async (req, res, next) => {
+    
+    const funcionarios = await usuarioService.listarFuncionarios();
+
+    return res.status(200).send(funcionarios);
+}
+
 const alterarFuncionario = async (req, res, next) => {
     const { body, params } = req;
     const validarNome = await usuarioService.funcionarioJaExiste(body.nome, params.id);
@@ -71,5 +79,6 @@ const alterarFuncionario = async (req, res, next) => {
 module.exports = {
     autenticar,
     criarFuncionario,
-    alterarFuncionario
+    listarFuncionarios,
+    alterarFuncionario,
 }

@@ -4,7 +4,8 @@ const Joi = require ('joi');
 
 module.exports = (router) => {
 
-  router.route('/cardapio')
+  router
+    .route('/cardapio')
     .get(
       cardapioController.getAllCardapio
     )
@@ -19,12 +20,13 @@ module.exports = (router) => {
       cardapioController.criarCardapio
     );
   
-  router.route('/cardapio/:id')
+  router
+    .route('/cardapio/:id')
     .get(
       cardapioController.getCardapioById
     )
     .put(
-      autorizar(),
+      autorizar('ALTERAR_ITEM_CARDAPIO'),
       validateDTO('params', {
         id: Joi.number().integer().required().messages({
           'any.required': `"id" é um campo obrigatório`,

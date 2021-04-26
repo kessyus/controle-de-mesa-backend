@@ -14,6 +14,7 @@ const perfis = [
             'ALTERAR_ITEM_CARDAPIO',
             'DELETAR_ITEM_CARDAPIO',
             'CRIAR_FUNCIONARIO',
+            'LISTAR_FUNCIONARIO',
             'ALTERAR_FUNCIONARIO',
             'DELETAR_FUNCIONARIO',
         ]

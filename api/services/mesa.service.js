@@ -23,9 +23,25 @@ const criarMesa = (model) => {
 
     return mesa.create(modelParaMesa)
 
+}
+
+const alterarMesa = (id, model) => {
+    return mesa.update(
+    {
+        numero: model.numero,
+        qtd_cadeiras: model.qtd_cadeiras,
+        ambiente: model.ambiente
+    },
+    {
+        where: { id: id}
     }
+    )
+    
+}
+
 
 module.exports = {
     mesaExiste,
-    criarMesa
+    criarMesa,
+    alterarMesa
 }
