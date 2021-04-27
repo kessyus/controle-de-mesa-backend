@@ -64,7 +64,7 @@ const alterarFuncionario = async (req, res, next) => {
     const validarNome = await usuarioService.funcionarioJaExiste(body.nome, params.id);
 
     if (validarNome) {
-        return res.status(400).senf({
+        return res.status(400).send({
             mensagem: `"Nome" já cadastrado`
         });
     }
