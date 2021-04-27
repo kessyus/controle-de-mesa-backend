@@ -33,8 +33,7 @@ module.exports = (router) => {
                 }),
                 tipo: Joi.string().required().messages({
                     'any.required': `"tipo" é um campo obrigatório`,
-                    'number.base': `"tipo" deve ser um número`,
-                    'number.integer': `"tipo" deve ser um número válido`
+                    'string.empty': `"nome" não deve ser vazio`,
                 }),
                 senha: Joi.string().min(5).required().messages({
                     'any.required': `"senha" é um campo obrigatório`,
@@ -72,10 +71,9 @@ module.exports = (router) => {
                     'string.min': `"nome" não deve ter menos que {#limit} caracteres`,
                     'string.max': `"nome" não deve ter mais que {#limit} caracteres`
                 }),
-                tipo: Joi.number().integer().required().messages({
+                tipo: Joi.string().required().messages({
                     'any.required': `"tipo" é um campo obrigatório`,
-                    'number.base': `"tipo" deve ser um número`,
-                    'number.integer': `"tipo" deve ser um número válido`
+                    'string.empty': `"nome" não deve ser vazio`,
                 })
             }),
             usuarioController.alterarFuncionario
