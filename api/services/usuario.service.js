@@ -92,11 +92,7 @@ const alterarFuncionario = (id, model) => {
 }
 
 const listarFuncionarios = async () => {
-    const funcionariosFromDB = await usuarios.findAll({
-        where: {
-            tipo: '2'
-        },
-    })
+    const funcionariosFromDB = await usuarios.findAll({})
 
     return funcionariosFromDB.map(item => {
         const { id, nome, tipo } = item
