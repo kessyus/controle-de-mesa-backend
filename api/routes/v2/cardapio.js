@@ -14,7 +14,6 @@ module.exports = (router) => {
       validateDTO('body', {
         produto: Joi.string().required(),
         preco: Joi.number().required(),
-        descricao: Joi.string(),
         categoria: Joi.string().required(),
       }),
       cardapioController.criarCardapio

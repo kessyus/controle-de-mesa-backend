@@ -29,7 +29,7 @@ const criarItem = (model) => {
 const alterarItem = (id, body) => {
     const model = {
         produto: body.produto,
-        prpreco: body.preco,
+        preco: body.preco,
         descricao: body.descricao,
         categoria: body.categoria
     }
