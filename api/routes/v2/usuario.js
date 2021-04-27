@@ -78,4 +78,12 @@ module.exports = (router) => {
             }),
             usuarioController.alterarFuncionario
         )
+        
+        
+    router
+        .route('/funcionario/:id')
+        .delete(
+            autorizar('DELETAR_FUNCIONARIO'),
+            usuarioController.deletarFuncionario
+        )
 }

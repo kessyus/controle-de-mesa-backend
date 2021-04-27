@@ -30,6 +30,10 @@ module.exports = (router) => {
       autorizar('ALTERAR_MESA'),
       mesaController.alterarMesa
       )
+    .delete(
+      autorizar('DELETAR_MESA'),
+      mesaController.deletarMesa
+    )
 
   router
     .route('/mesa/:id/insert')
@@ -45,3 +49,4 @@ module.exports = (router) => {
       mesaController.deletePedido
       )
 }
+

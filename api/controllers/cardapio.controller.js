@@ -86,9 +86,24 @@ const alterarItem = async (req, res, next) => {
   }
 }
 
+const deletarItem = async (req, res, next) => {
+  const { id } = req.params;
+
+  await cardapios.destroy({
+    where: {
+      id: id
+    }
+  });
+
+  return res.status(200).send({
+    mensagem: 'Item deletado com sucesso'
+  })
+}
+
 module.exports = {
   getAllCardapio,
   getCardapioById,
   criarCardapio,
-  alterarItem
+  alterarItem,
+  deletarItem
 }

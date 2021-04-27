@@ -117,7 +117,6 @@ const criarMesa = async (req, res, next) => {
     }
 }
 
-
 const alterarMesa = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -137,11 +136,26 @@ const alterarMesa = async (req, res, next) => {
   }
 }
 
+const deletarMesa = async (req, res, next) => {
+  const { id } = req.params;
+
+  await mesa.destroy({
+    where:{
+      id: id
+    }
+  });
+
+  return res.status(200).send({
+    mensagem: 'mesa deletada'
+  })
+}
+
 module.exports = {
   getAllMesas,
   getMesaById,
   postCadastroPedido,
   deletePedido,
   criarMesa,
-  alterarMesa
+  alterarMesa,
+  deletarMesa
 }

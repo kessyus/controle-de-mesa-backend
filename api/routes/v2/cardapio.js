@@ -41,4 +41,8 @@ module.exports = (router) => {
       }),
       cardapioController.alterarItem
     )
+    .delete(
+      autorizar('DELETAR_ITEM_CARDAPIO'),
+      cardapioController.deletarItem
+    )
 }
