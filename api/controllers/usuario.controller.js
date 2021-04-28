@@ -71,8 +71,8 @@ const alterarFuncionario = async (req, res, next) => {
 const deletarFuncionario = async (req, res, next) => {
     
     try {
-        const { params } = req;
-        const validarFuncionario = await usuarioService.funcionarioJaExiste(params.id)
+        const { params} = req;
+        const validarFuncionario = await usuarioService.buscarPorId(params.id)
 
         if(!validarFuncionario)
         return res.status(422).send({
@@ -85,7 +85,7 @@ const deletarFuncionario = async (req, res, next) => {
             mensagem: 'Usuário deletado'
         })
     } catch (error) {
-       console.log(error);
+       console.log("#####", error);
        return res.status(500).send({
            mensagem: 'Internal server error!!'
        })

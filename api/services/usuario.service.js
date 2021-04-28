@@ -11,6 +11,14 @@ const buscarPorNome = async (nome) => {
     });
 }
 
+const buscarPorId = async (id) => {
+    return usuariosDB = usuarios.findOne({
+        where:{
+            id: id
+        },
+    });
+}
+
 const criarHash = (senha) => {
 
     return md5(senha + hashSecret);
@@ -65,7 +73,6 @@ const funcionarioJaExiste = async (nome) => {
         const result = await buscarPorNome(nome);
         return result ? true : false;
     }
-
  const criarFuncionario = (model) => {
 
     const modelParaCadastro = {
@@ -123,5 +130,6 @@ module.exports = {
     buscarPorNome,
     alterarFuncionario,
     listarFuncionarios,
+    buscarPorId,
     deletarFuncionario
 }
