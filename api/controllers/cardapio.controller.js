@@ -1,14 +1,17 @@
 const { cardapios } = require('../models');
 const cardapioService = require('../services/cardapio.service')
+const Sequelize = require('sequelize')
 
 const getAllCardapio = async (req, res, next) => {
 
-  const result = await cardapios.findAll({});
-
+  const result = await cardapios.findAll({
+    order: Sequelize.literal('categoria ASC, produto ASC'),  
+  });
+  
   res.status(200).send(result.map(item => {
-
+    
     const { id, produto, preco, descricao, categoria } = item;
-
+    
     return {
       id,
       produto,
@@ -16,7 +19,7 @@ const getAllCardapio = async (req, res, next) => {
       descricao,
       categoria
     }
-
+    
   }) || []);
 
 }
