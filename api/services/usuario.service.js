@@ -105,6 +105,16 @@ const listarFuncionarios = async () => {
     })
 }
 
+deletarFuncionario = async (id) => {
+
+    return usuarios.destroy({
+        where:{
+            id: id
+        }
+    })
+}
+
+
 module.exports = {
     usuarioExiste,
     criarCredencial,
@@ -112,5 +122,6 @@ module.exports = {
     criarFuncionario,
     buscarPorNome,
     alterarFuncionario,
-    listarFuncionarios
+    listarFuncionarios,
+    deletarFuncionario
 }

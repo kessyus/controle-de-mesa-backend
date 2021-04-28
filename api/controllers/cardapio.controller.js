@@ -87,17 +87,20 @@ const alterarItem = async (req, res, next) => {
 }
 
 const deletarItem = async (req, res, next) => {
-  const { id } = req.params;
+  
+  try {
+    const { params } = req;
+    await cardapioService.deletarItem(params.id);
 
-  await cardapios.destroy({
-    where: {
-      id: id
-    }
-  });
-
-  return res.status(200).send({
-    mensagem: 'Item deletado com sucesso'
-  })
+    return res.status(200).send({
+      mensagem: 'Item deletado com sucesso'
+    })
+  } catch (error) {
+      return res.status(500).send({
+        mensagem: 'Internal server error!'
+      })
+  }
+  
 }
 
 module.exports = {

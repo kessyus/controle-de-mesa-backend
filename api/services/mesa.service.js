@@ -35,13 +35,21 @@ const alterarMesa = (id, model) => {
     {
         where: { id: id}
     }
-    )
-    
+    )    
+}
+
+const deletarMesa = async (id) => {
+    return mesa.destroy({
+        where:{
+          id: id
+        }
+      });
 }
 
 
 module.exports = {
     mesaExiste,
     criarMesa,
-    alterarMesa
+    alterarMesa,
+    deletarMesa
 }

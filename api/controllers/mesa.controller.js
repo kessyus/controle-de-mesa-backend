@@ -137,17 +137,19 @@ const alterarMesa = async (req, res, next) => {
 }
 
 const deletarMesa = async (req, res, next) => {
-  const { id } = req.params;
+  try {
+    const { params } = req;
+    await mesaService.deletarMesa(params.id)
+    
+    return res.status(200).send({
+      mensagem: 'mesa deletada'
+    })
+  } catch (error) {
+      return res.status(500).send({
+        mensagem: 'Internal server error!'
+      })
+  }
 
-  await mesa.destroy({
-    where:{
-      id: id
-    }
-  });
-
-  return res.status(200).send({
-    mensagem: 'mesa deletada'
-  })
 }
 
 module.exports = {

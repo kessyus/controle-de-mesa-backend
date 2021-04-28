@@ -84,6 +84,14 @@ module.exports = (router) => {
         .route('/funcionario/:id')
         .delete(
             autorizar('DELETAR_FUNCIONARIO'),
+            validateDTO('params', {
+                id: Joi.number().integer().required().messages({
+                    'any.required': `"id" é um campo obrigatório`,
+                    'number.base': `"id" deve ser um número`,
+                    'number.integer': `"id" deve ser um número válido`
+
+                })
+            }),
             usuarioController.deletarFuncionario
         )
 }

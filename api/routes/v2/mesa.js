@@ -32,6 +32,13 @@ module.exports = (router) => {
       )
     .delete(
       autorizar('DELETAR_MESA'),
+      validateDTO('params', {
+        id: Joi.number().integer().required().messages({
+            'any.required': `"id" é um campo obrigatório`,
+            'number.base': `"id" deve ser um número`,
+            'number.integer': `"id" deve ser um número válido`
+        })
+    }),
       mesaController.deletarMesa
     )
 

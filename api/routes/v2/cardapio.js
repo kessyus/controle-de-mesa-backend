@@ -12,9 +12,19 @@ module.exports = (router) => {
     .post(
       autorizar('CRIAR_ITEM_CARDAPIO'),
       validateDTO('body', {
-        produto: Joi.string().required(),
-        preco: Joi.number().required(),
-        categoria: Joi.string().required(),
+        produto: Joi.string().required().messages({
+          'any.required': `"produto" é um campo obrigatório`,
+          'string.empty': `"produto" não deve ser vazio`,
+        }),  
+        preco: Joi.number().required().messages({
+          'any.required': `"preço" é um campo obrigatório`,
+          'number.base': `"preço" deve ser um número`,
+        }),
+        descricao: Joi.optional(),
+        categoria: Joi.string().required().messages({
+          'any.required': `"categoria" é um campo obrigatório`,
+          'string.empty': `"categoria" não deve ser vazio`,
+        }),
       }),
       cardapioController.criarCardapio
     );
@@ -43,6 +53,13 @@ module.exports = (router) => {
     )
     .delete(
       autorizar('DELETAR_ITEM_CARDAPIO'),
+      validateDTO('params', {
+        id: Joi.number().integer().required().messages({
+            'any.required': `"id" é um campo obrigatório`,
+            'number.base': `"id" deve ser um número`,
+            'number.integer': `"id" deve ser um número válido`
+        })
+    }),
       cardapioController.deletarItem
     )
 }

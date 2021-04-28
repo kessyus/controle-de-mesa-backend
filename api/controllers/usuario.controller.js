@@ -1,4 +1,3 @@
-const { usuarios }  = require('../models');
 const usuarioService = require('../services/usuario.service')
 
 const autenticar = async (req, res, next) => {
@@ -70,20 +69,26 @@ const alterarFuncionario = async (req, res, next) => {
 }
 
 const deletarFuncionario = async (req, res, next) => {
-    const { id } = req.params
-    console.log( usuarios );
+    
     try {
-        await usuarios.destroy({
-            where:{
-                id: id
-            }
-        })
+        const { params } = req;
+        const validarFuncionario = await usuarioService.funcionarioJaExiste(params.id)
+
+        if(!validarFuncionario)
+        return res.status(422).send({
+            mensagem: 'Esse usuário não existe'
+        });
+
+        await usuarioService.deletarFuncionario(params.id)
         
         return res.status(200).send({
             mensagem: 'Usuário deletado'
         })
     } catch (error) {
-       console.log(error); 
+       console.log(error);
+       return res.status(500).send({
+           mensagem: 'Internal server error!!'
+       })
     }
 
 }

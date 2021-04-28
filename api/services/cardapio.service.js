@@ -39,8 +39,17 @@ const alterarItem = (id, body) => {
     )
 }
 
+const deletarItem = async (id) => {
+    return cardapios.destroy({
+        where: {
+          id: id
+        }
+      });
+}
+
 module.exports = {
     itemExiste,
     criarItem,
-    alterarItem
+    alterarItem,
+    deletarItem
 }
