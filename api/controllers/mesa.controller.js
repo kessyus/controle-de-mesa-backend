@@ -2,23 +2,29 @@ const { mesa, cardapios, mesaCardapio } = require('../models');
 const mesaService = require('../services/mesa.service')
 
 const getAllMesas = async (req, res, next) => {
+  const result = await mesa.findAll({
+    include: [
+      {
+        model: mesaCardapio,
+        include: [{ model: cardapios }],
+      },
+    ],
+  });
 
-  const result = await mesa.findAll({});
+  res.status(200).send(
+    result.map((item) => {
+      const { id, numero, qtd_cadeiras, ambiente, mesaCardapios } = item;
 
-  res.status(200).send(result.map(item => {
-
-    const { id, numero, qtd_cadeiras, ambiente } = item;
-
-    return {
-      id,
-      numero,
-      qtd_cadeiras,
-      ambiente
-    }
-
-  }) || []);
-
-}
+      return {
+        id,
+        numero,
+        qtd_cadeiras,
+        ambiente,
+        ocupada: mesaCardapios.length > 0 ? true : false,
+      };
+    }) || []
+  );
+};
 
 const getMesaById = async (req, res, next) => {
 
@@ -149,6 +155,7 @@ const deletarMesa = async (req, res, next) => {
         mensagem: 'Internal server error!'
       })
   }
+  
 
 }
 

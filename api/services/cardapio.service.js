@@ -1,4 +1,5 @@
-const { cardapios } = require('../models');
+const { cardapios, mesaCardapio, } = require('../models');
+
 
 
 const itemExiste = async (produto) => {
@@ -44,12 +45,46 @@ const deletarItem = async (id) => {
         where: {
           id: id
         }
-      });
+      });    
 }
 
-module.exports = {
+const listarQtdPedidoItem  = async (id_cardapio) => {
+
+    let where = {};
+  
+    if (id_cardapio)
+      where = {
+        id_cardapio
+      }
+
+    const pedidoFromDB = await cardapios.findAll({
+      include: [
+        {
+          model: mesaCardapio,
+          as: 'mesaCardapios',
+          where
+
+        }
+      ],
+    });
+  
+    const mapaPedidos = await pedidoFromDB.map((item) => {
+        const { id, produto, preco, mesaCardapios } = item;
+        return {
+            id,
+            produto,
+            preco,
+            pedidos: mesaCardapios.length
+        }
+    });
+    const maisPedidos = mapaPedidos.sort((a, b) => (Number(a.pedidos) > Number(b.pedidos)) ? -1 : ((Number(b.pedidos) > Number(a.pedidos)) ? 1 : 0))
+    return maisPedidos
+}
+
+    module.exports = {
     itemExiste,
     criarItem,
     alterarItem,
-    deletarItem
+    deletarItem,
+    listarQtdPedidoItem
 }

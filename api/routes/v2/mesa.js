@@ -55,5 +55,7 @@ module.exports = (router) => {
       autorizar('DELETAR_PEDIDO'),
       mesaController.deletePedido
       )
+
+      
 }
 

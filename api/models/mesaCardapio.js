@@ -1,5 +1,3 @@
-const mesa = require("./mesa");
-
 module.exports = (sequelize, DataTypes) => {
   const mesaCardapio = sequelize.define(
     "mesaCardapio",

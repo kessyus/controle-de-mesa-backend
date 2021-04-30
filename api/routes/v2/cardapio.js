@@ -61,5 +61,12 @@ module.exports = (router) => {
         })
     }),
       cardapioController.deletarItem
-    )
-}
+    );
+
+  router
+    .route("/relatorio")
+    .get(
+      autorizar('RELATORIO'),
+     cardapioController.listarQtdPedidoItem
+   );
+  }

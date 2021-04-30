@@ -97,19 +97,33 @@ const deletarItem = async (req, res, next) => {
 
     return res.status(200).send({
       mensagem: 'Item deletado com sucesso'
-    })
+    });
   } catch (error) {
       return res.status(500).send({
         mensagem: 'Internal server error!'
-      })
+      });
   }
   
 }
 
+const listarQtdPedidoItem = async (req, res, next) => {
+  try {
+    
+    const result = await cardapioService.listarQtdPedidoItem()
+    return res.status(200).send(result)
+    
+  } catch (error) {
+    return res.status(500).send({
+      mensagem: 'Internal server error!'
+    });
+  }
+    
+}
 module.exports = {
   getAllCardapio,
   getCardapioById,
   criarCardapio,
   alterarItem,
-  deletarItem
+  deletarItem,
+  listarQtdPedidoItem
 }

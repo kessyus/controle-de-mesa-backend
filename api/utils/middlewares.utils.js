@@ -17,6 +17,7 @@ const perfis = [
             'LISTAR_FUNCIONARIO',
             'ALTERAR_FUNCIONARIO',
             'DELETAR_FUNCIONARIO',
+            'RELATORIO',
         ]
     },
     {
