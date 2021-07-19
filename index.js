@@ -22,3 +22,4 @@ app.listen(port, () => {
 // const md5 = require('md5')
 
 // console.log(md5('123456' + 'palavre_chave_crypto_key'));
+
