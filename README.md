@@ -17,12 +17,4 @@ $ yarn start        # inicia o servidor
 
 ## Padrão de rotas
 
-- GET
-  - 'v?/mesa': Lista todas as mesas do restaurante.
-  - 'v?/mesa/:id': Lista a mesa do id específico com todos os pedidos realizados pela mesa.
-  - 'v?/cardapio': Lista todos os itens do cardápio do restaurante.
-  - 'v?/cardapio/:id': Lista detalhes do item especificado pelo id.
-- POST
-  - 'v?/mesa/:id/insert': Insere um novo pedido para a mesa. Necessário informar por POST o 'id_cardapio'.
-- DELETE
-  - 'v?/mesa/delete/:id': Exclui um pedido de uma mesa.
+Para saber o padrão de rotas utilize importe a collection do Postman do arquivo "collections.json".
